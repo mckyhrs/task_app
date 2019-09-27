@@ -1,4 +1,4 @@
-# 株式会社Casy様　スキルチェックカリキュラム
+# スキルチェックカリキュラム
 
 ### 仕様について
 https://github.com/mckyhrs/task_app/blob/master/docs/el-training.md
