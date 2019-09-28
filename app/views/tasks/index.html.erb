@@ -1,0 +1,17 @@
+<h1>タスク一覧</h1>
+
+<table border=1>
+	<thead>
+		<tr>
+			<th>タスク</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+
+<% @tasks.each do |task| %>
+	<tr>
+		<td><%= link_to task.task_name, "/#{task.id} " %></td>
+		<td><%= task.content %></td>
+	</tr>
+<% end %>
+</table>
