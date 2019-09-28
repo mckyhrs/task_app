@@ -1,17 +1,15 @@
 <h1>タスク詳細</h1>
 
 <p><%= flash[:notice] %></p>
-<%= link_to "編集する", edit_task_path %>
-<%= link_to "削除する", @task, method: :delete %>
-<table>
-	<tr>
-		<td>タスク</td>
-		<td><%= @task.task_name %></td>
-	</tr>
-	<tr>
-		<td>説明</td>
-		<td><%= @task.content %></td>
-	</tr>
-</table>
+<%= link_to "編集", edit_task_path %>
+<%= link_to "削除", @task, method: :delete %>
+<p>
+	<strong>タスク：</strong>
+	<%= @task.task_name %>
+</p>
+<p>
+	<strong>説明：</strong>
+	<%= @task.content %>
+</p>
 <br/>
 <%= link_to "一覧に戻る", tasks_path %>
