@@ -42,9 +42,19 @@ RSpec.describe 'Tasks', type: :system do
 		visit task_path(@task)
 
 		# 更新ボタン
-		click_link '削除する'
+		click_link '削除'
 
 		# 検証
 		expect(page).to have_content 'タスクが削除されました！'
+	end	
+
+	it 'タスク一覧' do
+		Task.create!(task_name: 'Test task', content: 'This is the test task.')
+
+		# 新規作成画面を表示
+		visit tasks_path
+
+		# 検証
+		expect(page).to have_content 'Test task'
 	end	
 end

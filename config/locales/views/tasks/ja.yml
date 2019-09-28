@@ -1,4 +1,10 @@
 ja:
-	tasks:
-		flash:
-			new: タスクが登録！		
+  tasks:
+    index:
+      title: "タスク一覧"
+    show:
+      title: "タスク詳細"
+    new:
+      title: "タスク登録"
+    edit:
+      title: "タスク編集"

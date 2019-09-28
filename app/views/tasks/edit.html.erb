@@ -1,4 +1,4 @@
-<h1>タスク編集</h1>
+<h1><%= t('.title') %></h1>
 
 <%= form_with(model: @task, local: true) do |form| %>
 <table>
@@ -7,7 +7,7 @@
 		<td><%= form.text_field :task_name %></td>
 	</tr>
 	<tr>
-		<th><%= form.label :content, "説明" %></th>
+		<th><%= form.label :content %></th>
 		<td><%= form.text_area :content %></td>
 	</tr>
 </table>
