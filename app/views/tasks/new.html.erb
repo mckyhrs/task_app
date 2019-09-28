@@ -1,0 +1,24 @@
+<h1>タスク登録</h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+<% if @task.errors.any? %>
+  <p>エラーが発生しました。</p>
+	<ul>
+		<% @task.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<table>
+	<tr>
+		<td><%= form.label :task_name, "タスク" %></td>
+		<td><%= form.text_field :task_name %></td>
+	</tr>
+	<tr>
+		<td><%= form.label :content, "説明" %></td>
+		<td><%= form.text_field :content %></td>
+	</tr>
+</table>
+<%= form.submit %>
+<% end %>

@@ -3,15 +3,17 @@
 <table border=1>
 	<thead>
 		<tr>
+			<th>ID</th>
 			<th>タスク</th>
-			<th>説明</th>
 		</tr>
 	</thead>
 
 <% @tasks.each do |task| %>
 	<tr>
-		<td><%= link_to task.task_name, "/#{task.id} " %></td>
-		<td><%= task.content %></td>
+		<td><%= task.id %></td>
+		<td><%= link_to task.task_name, task_path(task) %></td>
 	</tr>
 <% end %>
 </table>
+<br/>
+<%= link_to "新規タスク作成", new_task_path %>

@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/', to: 'tasks#index'
-  get '/:id', to: 'tasks#show'
+	resources :tasks
+	root 'tasks#index'
 end

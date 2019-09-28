@@ -1,15 +1,16 @@
 <h1>タスク詳細</h1>
 
-<table border=1>
-	<thead>
-		<tr>
-			<th>タスク</th>
-			<th>説明</th>
-		</tr>
-	</thead>
-
+<p><%= flash[:notice] %></p>
+<%= link_to "編集する", edit_task_path %>
+<table>
 	<tr>
+		<td>タスク</td>
 		<td><%= @task.task_name %></td>
+	</tr>
+	<tr>
+		<td>説明</td>
 		<td><%= @task.content %></td>
 	</tr>
 </table>
+<br/>
+<%= link_to "一覧に戻る", tasks_path %>

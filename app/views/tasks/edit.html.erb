@@ -1,0 +1,16 @@
+<h1>タスク編集</h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+<table>
+	<tr>
+		<td><%= form.label :task_name, "タスク" %></td>
+		<td><%= form.text_field :task_name %></td>
+	</tr>
+	<tr>
+		<td><%= form.label :content, "説明" %></td>
+		<td><%= form.text_field :content %></td>
+	</tr>
+</table>
+<%= form.hidden_field :id %>
+<%= form.submit %>
+<% end %>
