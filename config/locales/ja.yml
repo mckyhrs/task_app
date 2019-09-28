@@ -3,3 +3,9 @@ ja:
     submit:
       create: "登録"		
       update: "更新"		
+  flash:
+    create: "登録しました！"
+    update: "更新しました！"
+    delete: "削除しました！"
+  errors:
+    common_error: "エラーが発生しました。"

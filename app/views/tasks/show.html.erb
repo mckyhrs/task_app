@@ -1,8 +1,8 @@
 <h1><%= t('.title') %></h1>
 
 <p><%= flash[:notice] %></p>
-<%= link_to "編集", edit_task_path %>
-<%= link_to "削除", @task, method: :delete %>
+<%= link_to t('.edit'), edit_task_path %>
+<%= link_to t('.delete'), @task, method: :delete %>
 <p>
 	<strong><%= t('activerecord.attributes.task.task_name') %>：</strong>
 	<%= @task.task_name %>
@@ -12,4 +12,4 @@
 	<%= @task.content %>
 </p>
 <br/>
-<%= link_to "一覧に戻る", tasks_path %>
+<%= link_to t('.back'), tasks_path %>

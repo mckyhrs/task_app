@@ -2,7 +2,7 @@
 
 <%= form_with(model: @task, local: true) do |form| %>
 <% if @task.errors.any? %>
-  <p>エラーが発生しました。</p>
+  <p><%= t('errors.error') %></p>
 	<ul>
 		<% @task.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
@@ -22,3 +22,5 @@
 </table>
 <%= form.submit %>
 <% end %>
+<br/>
+<%= link_to t('.back'), tasks_path %>

@@ -20,7 +20,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'タスクが登録されました！'}
+				flash_msg = t 'flash.create'
+        format.html { redirect_to @task, notice: flash_msg}
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -32,7 +33,8 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'タスクが編集されました！' }
+				flash_msg = t 'flash.update'
+        format.html { redirect_to @task, notice: flash_msg }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -44,7 +46,8 @@ class TasksController < ApplicationController
 	def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'タスクが削除されました！' }
+			flash_msg = t 'flash.delete'
+      format.html { redirect_to tasks_url, notice: flash_msg }
       format.json { head :no_content }
     end
 	end
