@@ -14,10 +14,10 @@ RSpec.describe 'Tasks', type: :system do
 		fill_in '説明', with: 'This is the test task.'
 
 		# 新規作成ボタン 
-		click_on 'Create Task'
+		click_on '登録'
 	
 		# 検証
-		expect(page).to have_content 'タスクが登録されました！'
+		expect(page).to have_content '登録しました！'
 	end	
 
 	it 'タスク編集' do
@@ -29,10 +29,10 @@ RSpec.describe 'Tasks', type: :system do
 		fill_in '説明', with: 'Test task was updated.'
 
 		# 更新ボタン
-		click_on 'Update Task'
+		click_on '更新'
 
 		# 検証
-		expect(page).to have_content 'タスクが編集されました！'
+		expect(page).to have_content '更新しました！'
 		expect(page).to have_content 'Updated test task'
 		expect(page).to have_content 'Test task was updated.'
 	end	
@@ -45,7 +45,7 @@ RSpec.describe 'Tasks', type: :system do
 		click_link '削除'
 
 		# 検証
-		expect(page).to have_content 'タスクが削除されました！'
+		expect(page).to have_content '削除しました！'
 	end	
 
 	it 'タスク一覧' do

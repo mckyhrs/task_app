@@ -2,7 +2,7 @@
 
 <%= form_with(model: @task, local: true) do |form| %>
 <% if @task.errors.any? %>
-  <p><%= t('errors.error') %></p>
+  <p><%= t('errors.common_msg') %></p>
 	<ul>
 		<% @task.errors.full_messages.each do |message| %>
 			<li><%= message %></li>

@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-#  pending "add some examples to (or delete) #{__FILE__}"
+
+	it 'タスクが未入力' do
+		task = Task.new(task_name: '')
+		task.valid?
+		expect(task.errors[:task_name]).to include('を入力してください')
+	end	
 end

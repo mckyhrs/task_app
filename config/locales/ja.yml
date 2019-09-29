@@ -8,4 +8,4 @@ ja:
     update: "更新しました！"
     delete: "削除しました！"
   errors:
-    common_error: "エラーが発生しました。"
+    common_msg: "エラーが発生しました。"
