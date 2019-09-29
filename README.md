@@ -76,3 +76,10 @@ https://github.com/mckyhrs/task_app/blob/master/docs/el-training.md
 | create_user_id | 作成者ID | integer |
 | update_date | 更新日 | timestamp |
 | update_user_id | 更新者ID | integer |
+
+## Herokuへのデプロイ
+
+- Herokuにリポジトリをプッシュすれば完了
+```
+$ git push heroku master
+```
