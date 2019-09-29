@@ -17,7 +17,11 @@
 	</tr>
 	<tr>
 		<th><%= form.label :content %></th>
-		<td><%= form.text_field :content %></td>
+		<td><%= form.text_area :content %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :limit_date %></th>
+		<td><%= form.date_select :limit_date %></td>
 	</tr>
 </table>
 <%= form.submit %>

@@ -7,6 +7,11 @@
 		<tr>
 			<th><%= t('activerecord.attributes.task.id') %></th>
 			<th><%= t('activerecord.attributes.task.task_name') %></th>
+			<th>
+				<%= t('activerecord.attributes.task.limit_date') %>
+				<%= link_to "▲", { sort_column: :limit_date, sort_direction: "asc" } %>
+				<%= link_to "▼", { sort_column: :limit_date, sort_direction: "desc" } %>
+			</th>
 		</tr>
 	</thead>
 
@@ -14,6 +19,7 @@
 	<tr>
 		<td><%= task.id %></td>
 		<td><%= link_to task.task_name, task_path(task) %></td>
+		<td class="limit_date"><%= task.limit_date %></td>
 	</tr>
 <% end %>
 </table>
