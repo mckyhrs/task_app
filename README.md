@@ -79,7 +79,9 @@ https://github.com/mckyhrs/task_app/blob/master/docs/el-training.md
 
 ## Herokuへのデプロイ
 
-- Herokuにリポジトリをプッシュすれば完了
+Herokuにリポジトリをプッシュでデプロイ
 ```
 $ git push heroku master
 ```
+Heroku URL  
+https://obscure-garden-48968.herokuapp.com/
