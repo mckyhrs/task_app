@@ -7,3 +7,4 @@ ja:
         id: ID
         task_name: タスク
         content: 説明
+        limit_date: 終了期限
