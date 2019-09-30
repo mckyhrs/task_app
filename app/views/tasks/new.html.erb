@@ -23,6 +23,10 @@
 		<th><%= form.label :limit_date %></th>
 		<td><%= form.date_select :limit_date %></td>
 	</tr>
+	<tr>
+		<th><%= form.label :status %></th>
+		<td><%= form.select :status, Task.statuses.keys.map { |k| [I18n.t("enum.task.status.#{k}"), k] } %></td>
+	</tr>
 </table>
 <%= form.submit %>
 <% end %>
