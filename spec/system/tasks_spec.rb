@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
 	before do
-		@task = Task.create!(task_name: 'Test task', content: 'This is the test task.', limit_date: '2019-10-30')
-		Task.create!(task_name: 'Test task2', content: 'This is the test task.', limit_date: '2019-11-30')
-		Task.create!(task_name: 'Test task3', content: 'This is the test task.', limit_date: '2019-12-30')
+		@task = Task.create!(task_name: 'Test task', content: 'This is the test task.', limit_date: '2019-10-30', priority: 0)
+		Task.create!(task_name: 'Test task2', content: 'This is the test task.', limit_date: '2019-11-30', priority: 1)
+		Task.create!(task_name: 'Test task3', content: 'This is the test task.', limit_date: '2019-12-30', priority: 2)
 	end
 
 	it 'タスク登録' do
@@ -48,10 +48,10 @@ RSpec.describe 'Tasks', type: :system do
 
 	it 'タスク削除' do
 		# 編集画面を表示
-		visit task_path(@task)
+		visit tasks_path
 
 		# 更新ボタン
-		click_link '削除'
+		all('tbody tr')[0].click_link '削除'
 
 		# 検証
 		expect(page).to have_content '削除しました！'
@@ -70,7 +70,8 @@ RSpec.describe 'Tasks', type: :system do
 		# 一覧画面を表示
 		visit tasks_path
 
-		click_link '▲'
+		find('.sort-asc-limit').click
+		sleep 2
 
 		limit_dates = all('.limit_date')
 		# 検証
@@ -83,12 +84,41 @@ RSpec.describe 'Tasks', type: :system do
 		# 一覧画面を表示
 		visit tasks_path
 
-		click_link '▼'
+		find('.sort-desc-limit').click
+		sleep 2
 
 		limit_dates = all('.limit_date')
 		# 検証
 		expect(limit_dates[0]).to have_content '2019-12-30'
 		expect(limit_dates[1]).to have_content '2019-11-30'
 		expect(limit_dates[2]).to have_content '2019-10-30'
+	end	
+
+	it 'タスク一覧_優先順位の昇順' do
+		# 一覧画面を表示
+		visit tasks_path
+
+		find('.sort-asc-priority').click
+		sleep 2
+
+		priorities = all('.priority')
+		# 検証
+		expect(priorities[0]).to have_content '低'
+		expect(priorities[1]).to have_content '中'
+		expect(priorities[2]).to have_content '高'
+	end	
+
+	it 'タスク一覧_優先順位の降順' do
+		# 一覧画面を表示
+		visit tasks_path
+
+		find('.sort-desc-priority').click
+		sleep 2
+
+		priorities = all('.priority')
+		# 検証
+		expect(priorities[0]).to have_content '高'
+		expect(priorities[1]).to have_content '中'
+		expect(priorities[2]).to have_content '低'
 	end	
 end

@@ -3,15 +3,16 @@ ja:
     index:
       title: "タスク一覧"
       new: "新規タスク登録"
-    show:
-      title: "タスク詳細"
+      show: "詳細"
       edit: "編集"
       delete: "削除"
+      search: "検索"
+    show:
+      title: "タスク詳細"
       back: "一覧に戻る"
     new:
       title: "タスク登録"
       back: "一覧に戻る"
     edit:
       title: "タスク編集"
-      back_to_show: "一覧に戻る"
       back: "一覧に戻る"
