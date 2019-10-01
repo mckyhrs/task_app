@@ -14,6 +14,14 @@
 		<th><%= form.label :limit_date %></th>
 		<td><%= form.date_select :limit_date %></td>
 	</tr>
+	<tr>
+		<th><%= form.label :status %></th>
+		<td><%= form.select :status, Task.statuses.keys.map { |k| [I18n.t("enums.task.status.#{k}"), k] } %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :priority %></th>
+		<td><%= form.select :priority, Task.priorities.keys.map { |k| [I18n.t("enums.task.priority.#{k}"), k] } %></td>
+	</tr>
 </table>
 <%= form.submit %>
 <% end %>

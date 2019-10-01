@@ -2,10 +2,15 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-		if params[:sort_column] == nil
-			@tasks = Task.all.order(created_at: "desc")
+		# 検索
+		tasks = Task.search(params[:task_name], params[:status])
+		@search_cond = {task_name: params[:task_name], status: params[:status]}
+
+		# 並び替え
+		if params[:sort].present?
+			@tasks = tasks.order(params[:sort] + " "  + params[:sort_d])
 		else
-			@tasks = Task.all.order(params[:sort_column] + " "  + params[:sort_direction])
+			@tasks = tasks.order(created_at: "desc")
 		end
   end
 
@@ -59,7 +64,7 @@ class TasksController < ApplicationController
 	private
 
 		def task_params
-			params.require(:task).permit(:task_name, :content, :limit_date)
+			params.require(:task).permit(:task_name, :content, :limit_date, :status, :priority)
 		end
 
     def set_task

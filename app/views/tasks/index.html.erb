@@ -2,6 +2,17 @@
 
 <p><%= flash[:notice] %></p>
 
+<%= link_to t('.new'), new_task_path %>
+<br/>
+<%= form_tag(tasks_path, method: 'get') do %>
+	<p>
+		タイトル：<%= text_field_tag :task_name, @search_cond[:task_name] %>
+		ステータス：<%= select_tag :status, options_for_select(Task.statuses.map { |k, v| [I18n.t("enums.task.status.#{k}"), v] }, @search_cond[:status]), include_blank: true %>
+	</p>
+	<%= submit_tag t('.search') %>
+<% end %>
+<br/>
+
 <table>
 	<thead>
 		<tr>
@@ -9,19 +20,29 @@
 			<th><%= t('activerecord.attributes.task.task_name') %></th>
 			<th>
 				<%= t('activerecord.attributes.task.limit_date') %>
-				<%= link_to "▲", { sort_column: :limit_date, sort_direction: "asc" } %>
-				<%= link_to "▼", { sort_column: :limit_date, sort_direction: "desc" } %>
+				<%= link_to "▲", { sort: :limit_date, sort_d: "asc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-asc-limit" %>
+				<%= link_to "▼", { sort: :limit_date, sort_d: "desc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-desc-limit"%>
 			</th>
+			<th><%= t('activerecord.attributes.task.status') %></th>
+			<th>
+				<%= t('activerecord.attributes.task.priority') %>
+				<%= link_to "▲", { sort: :priority, sort_d: "asc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-asc-priority" %>
+				<%= link_to "▼", { sort: :priority, sort_d: "desc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-desc-priority" %>
+			</th>
+			<th col=3></th>
 		</tr>
 	</thead>
 
 <% @tasks.each do |task| %>
 	<tr>
 		<td><%= task.id %></td>
-		<td><%= link_to task.task_name, task_path(task) %></td>
+		<td><%= task.task_name %></td>
 		<td class="limit_date"><%= task.limit_date %></td>
+		<td><%= task.status_i18n %></td>
+		<td class="priority"><%= task.priority_i18n %></td>
+		<td><%= link_to t('.show'), task_path(task) %></td>
+		<td><%= link_to t('.edit'), edit_task_path(task) %></td>
+		<td><%= link_to t('.delete'), task, method: :delete %></td>
 	</tr>
 <% end %>
 </table>
-<br/>
-<%= link_to t('.new'), new_task_path %>

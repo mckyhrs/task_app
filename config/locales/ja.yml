@@ -9,3 +9,13 @@ ja:
     delete: "削除しました！"
   errors:
     common_msg: "エラーが発生しました。"
+  enums:
+    task:
+      status:
+        waiting: "未着手"
+        working: "着手中"
+        completed: "完了"
+      priority:
+        low: "低"
+        middle: "中"
+        high: "高"

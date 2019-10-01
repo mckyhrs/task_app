@@ -8,3 +8,5 @@ ja:
         task_name: タスク
         content: 説明
         limit_date: 終了期限
+        status: ステータス
+        priority: 優先順位
