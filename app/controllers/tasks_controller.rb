@@ -3,15 +3,18 @@ class TasksController < ApplicationController
 
   def index
 		# 検索
-		tasks = Task.search(params[:task_name], params[:status])
+		@tasks = Task.search(params[:task_name], params[:status])
 		@search_cond = {task_name: params[:task_name], status: params[:status]}
 
 		# 並び替え
 		if params[:sort].present?
-			@tasks = tasks.order(params[:sort] + " "  + params[:sort_d])
+			@tasks = @tasks.order(params[:sort] + " "  + params[:sort_d])
 		else
-			@tasks = tasks.order(created_at: "desc")
+			@tasks = @tasks.order(created_at: "desc")
 		end
+
+		# ページネーション
+		@tasks = @tasks.page(params[:page]).per(5)
   end
 
   def show
