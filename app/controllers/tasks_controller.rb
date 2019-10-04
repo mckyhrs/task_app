@@ -14,7 +14,10 @@ class TasksController < ApplicationController
 		end
 
 		# ページネーション
-		@tasks = @tasks.page(params[:page]).per(5)
+    @tasks = @tasks.page(params[:page]).per(5)
+    
+    # ユーザー一覧取得
+    @users = User.all
   end
 
   def show
@@ -67,7 +70,7 @@ class TasksController < ApplicationController
 	private
 
 		def task_params
-			params.require(:task).permit(:task_name, :content, :limit_date, :status, :priority)
+			params.require(:task).permit(:task_name, :content, :limit_date, :status, :priority, :user_id)
 		end
 
     def set_task

@@ -10,3 +10,4 @@ ja:
         limit_date: 終了期限
         status: ステータス
         priority: 優先順位
+        user_id: 担当者

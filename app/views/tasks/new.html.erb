@@ -27,6 +27,10 @@
 		<th><%= form.label :status %></th>
 		<td><%= form.select :status, Task.statuses.keys.map { |k| [I18n.t("enums.task.status.#{k}"), k] } %></td>
 	</tr>
+	<tr>
+		<th><%= form.label :user_id %></th>
+		<td><%= form.collection_select(:user_id, User.all, :id, :user_name, include_blank: t("message.select_blank")) %></td>
+	</tr>
 </table>
 <%= form.submit %>
 <% end %>
