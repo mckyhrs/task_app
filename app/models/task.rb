@@ -5,8 +5,8 @@ class Task < ApplicationRecord
 	belongs_to :user, optional: true
 
 	# 検索
-	def self.search(task_name, status)
-		tasks = Task.all.includes(:user)
+	def self.search(task_name, status, user_id)
+		tasks = Task.all.where("user_id = #{user_id}")
 		if task_name.present?
 			tasks = tasks.where("task_name LIKE '%#{task_name}%'")
 		end

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_143508) do
   create_table "users", force: :cascade do |t|
     t.string "user_name", null: false
     t.string "login_id", null: false
-    t.string "password", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

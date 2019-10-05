@@ -23,10 +23,6 @@
 		<th><%= t('activerecord.attributes.task.priority') %></th>
 		<td><%= @task.priority_i18n %></td>
 	</tr>
-	<tr>
-		<th><%= t('activerecord.attributes.task.user_id') %></th>
-		<td><%= @task.user.user_name if @task.user.present? %></td>
-	</tr>
 </table>
 <br/>
 <%= link_to t('.back'), tasks_path %>

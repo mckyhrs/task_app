@@ -9,6 +9,7 @@ ja:
     delete: "削除しました！"
   errors:
     common_msg: "エラーが発生しました。"
+    login_invalid: "IDまたはパスワードが異なります。"
   enums:
     task:
       status:
