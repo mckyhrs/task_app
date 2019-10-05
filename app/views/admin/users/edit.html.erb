@@ -1,0 +1,25 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_with(model: [:admin, @user], local: true) do |form| %>
+<table>
+	<tr>
+		<th><%= form.label :user_name %></th>
+		<td><%= form.text_field :user_name %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :login_id %></th>
+		<td><%= form.text_field :login_id %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :password %></th>
+		<td><%= form.text_field :password %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :role %></th>
+		<td><%= form.select :role, User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] } %></td>
+	</tr>
+</table>
+<%= form.submit %>
+<% end %>
+<br/>
+<%= link_to t('.back'), admin_users_path %>
