@@ -22,10 +22,6 @@
 		<th><%= form.label :priority %></th>
 		<td><%= form.select :priority, Task.priorities.keys.map { |k| [I18n.t("enums.task.priority.#{k}"), k] } %></td>
 	</tr>
-	<tr>
-		<th><%= form.label :user_id %></th>
-		<td><%= form.collection_select(:user_id, User.all, :id, :user_name, include_blank: t("message.select_blank")) %></td>
-	</tr>
 </table>
 <%= form.submit %>
 <% end %>

@@ -37,7 +37,6 @@
 					<%= link_to "▲", { sort: :priority, sort_d: "asc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-asc-priority" %>
 					<%= link_to "▼", { sort: :priority, sort_d: "desc", task_name: @search_cond[:task_name], status: @search_cond[:status] }, class: "sort-desc-priority" %>
 				</th>
-				<th scope="col"><%= t('activerecord.attributes.task.user') %></th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 				<th scope="col"></th>
@@ -51,7 +50,6 @@
 			<td class="limit_date"><%= task.limit_date %></td>
 			<td><%= task.status_i18n %></td>
 			<td class="priority"><%= task.priority_i18n %></td>
-			<td><%= task.user.user_name if task.user.present? %></td>
 			<td><%= link_to t('.show'), task_path(task) %></td>
 			<td><%= link_to t('.edit'), edit_task_path(task) %></td>
 			<td><%= link_to t('.delete'), task, method: :delete %></td>

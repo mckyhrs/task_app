@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   def index
 		# 検索
-		@tasks = Task.search(params[:task_name], params[:status])
+    @tasks = Task.search(params[:task_name], params[:status], session[:user_id])
+    # 検索条件を保持
 		@search_cond = {task_name: params[:task_name], status: params[:status]}
 
 		# 並び替え
@@ -15,9 +17,6 @@ class TasksController < ApplicationController
 
 		# ページネーション
     @tasks = @tasks.page(params[:page]).per(5)
-    
-    # ユーザー一覧取得
-    @users = User.all
   end
 
   def show
@@ -65,14 +64,23 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: flash_msg }
       format.json { head :no_content }
     end
-	end
+  end
+ 
+  # ログイン中でなければログイン画面へリダイレクト
+  def check_login
+    redirect_to login_path if !logged_in?
+  end
+
 
 	private
 
+    # リクエストパラメータから値を取得
 		def task_params
-			params.require(:task).permit(:task_name, :content, :limit_date, :status, :priority, :user_id)
+      params[:task][:user_id] = session[:user_id]
+      params.require(:task).permit(:task_name, :content, :limit_date, :status, :priority, :user_id)
 		end
 
+    # idからタスクを取得
     def set_task
       @task = Task.find(params[:id])
     end
