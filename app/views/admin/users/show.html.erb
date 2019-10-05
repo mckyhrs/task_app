@@ -1,0 +1,28 @@
+<h1><%= t('.title') %></h1>
+
+<p><%= flash[:notice] %></p>
+
+<table>
+	<tr>
+		<th><%= t('activerecord.attributes.task.task_name') %></th>
+		<td><%= @task.task_name %></td>
+	</tr>
+	<tr>
+		<th><%= t('activerecord.attributes.task.content') %></th>
+		<td><%= @task.content %></td>
+	</tr>
+	<tr>
+		<th><%= t('activerecord.attributes.task.limit_date') %></th>
+		<td><%= @task.limit_date %></td>
+	</tr>
+	<tr>
+		<th><%= t('activerecord.attributes.task.status') %></th>
+		<td><%= @task.status_i18n %></td>
+	</tr>
+	<tr>
+		<th><%= t('activerecord.attributes.task.priority') %></th>
+		<td><%= @task.priority_i18n %></td>
+	</tr>
+</table>
+<br/>
+<%= link_to t('.back'), tasks_path %>

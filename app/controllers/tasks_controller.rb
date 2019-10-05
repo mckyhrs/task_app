@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     @task.destroy
     respond_to do |format|
 			flash_msg = t 'flash.delete'
-      format.html { redirect_to tasks_url, notice: flash_msg }
+      format.html { redirect_to tasks_path, notice: flash_msg }
       format.json { head :no_content }
     end
   end

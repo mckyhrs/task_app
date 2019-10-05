@@ -10,7 +10,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= current_user.user_name %></li>
-              <li><%= link_to "Admin", '#' %></li>
+              <li><%= link_to "Admin", admin_users_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Logout", logout_path, method: "delete" %>

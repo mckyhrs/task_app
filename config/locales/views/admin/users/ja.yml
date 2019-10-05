@@ -1,0 +1,14 @@
+ja:
+  admin:
+    users:
+      index:
+        title: "ユーザー一覧"
+        new: "新規ユーザー登録"
+        edit: "編集"
+        delete: "削除"
+      new:
+        title: "ユーザー登録"
+        back: "一覧に戻る"
+      edit:
+        title: "ユーザー編集"
+        back: "一覧に戻る"

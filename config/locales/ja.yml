@@ -20,5 +20,9 @@ ja:
         low: "低"
         middle: "中"
         high: "高"
+    user:
+      role:
+        general: "一般"
+        admin: "管理"
   message:
     select_blank: "--選択してください--"
