@@ -2,9 +2,18 @@ require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
 	before do
-		@task = Task.create!(task_name: 'Test task', content: 'This is the test task.', limit_date: '2019-10-30', priority: 0)
-		Task.create!(task_name: 'Test task2', content: 'This is the test task.', limit_date: '2019-11-30', priority: 1)
-		Task.create!(task_name: 'Test task3', content: 'This is the test task.', limit_date: '2019-12-30', priority: 2)
+		User.create!(user_name: 'testuser1', login_id: 'loginid', password: 'password', role: 0)
+		
+		# ログイン
+		visit login_path
+		fill_in 'ID', with: 'loginid'
+		fill_in 'Password', with: 'password'
+		click_on 'Login'
+
+		@task = Task.create!(task_name: 'Test task', content: 'This is the test task.', limit_date: '2019-10-30', status: 0, priority: 0, user_id: User.first.id)
+		Task.create!(task_name: 'Test task2', content: 'This is the test task.', limit_date: '2019-11-30', status: 0, priority: 1, user_id: User.first.id)
+		Task.create!(task_name: 'Test task3', content: 'This is the test task.', limit_date: '2019-12-30', status: 0, priority: 2, user_id: User.first.id)
+
 	end
 
 	it 'タスク登録' do
@@ -12,17 +21,15 @@ RSpec.describe 'Tasks', type: :system do
 		visit new_task_path
 
 		# フォームに入力
-		fill_in 'タスク', with: 'Test task'
+		fill_in 'タスク', with: 'Test task4'
 		fill_in '説明', with: 'This is the test task.'
-		select '2019', from: 'task_limit_date_1i'
-		select '10月', from: 'task_limit_date_2i'
-		select '30', from: 'task_limit_date_3i'
 
 		# 新規作成ボタン 
 		click_on '登録'
 	
 		# 検証
 		expect(page).to have_content '登録しました！'
+		expect(page).to have_content 'Test task4'
 	end	
 
 	it 'タスク編集' do
@@ -32,9 +39,11 @@ RSpec.describe 'Tasks', type: :system do
 		# フォームを編集
 		fill_in 'タスク', with: 'Updated test task'
 		fill_in '説明', with: 'Test task was updated.'
-		select '2019', from: 'task_limit_date_1i'
-		select '10月', from: 'task_limit_date_2i'
-		select '30', from: 'task_limit_date_3i'
+		select '2020', from: 'task_limit_date_1i'
+		select '11月', from: 'task_limit_date_2i'
+		select '15', from: 'task_limit_date_3i'
+		select '完了', from: 'task_status'
+		select '中', from: 'task_priority'
 
 		# 更新ボタン
 		click_on '更新'
@@ -43,11 +52,13 @@ RSpec.describe 'Tasks', type: :system do
 		expect(page).to have_content '更新しました！'
 		expect(page).to have_content 'Updated test task'
 		expect(page).to have_content 'Test task was updated.'
-		expect(page).to have_content '2019-10-30'
+		expect(page).to have_content '2020-11-15'
+		expect(page).to have_content '完了'
+		expect(page).to have_content '中'
 	end	
 
 	it 'タスク削除' do
-		# 編集画面を表示
+		# 一覧画面を表示
 		visit tasks_path
 
 		# 更新ボタン
@@ -55,15 +66,17 @@ RSpec.describe 'Tasks', type: :system do
 
 		# 検証
 		expect(page).to have_content '削除しました！'
+		expect(page).not_to have_content 'Test task3'
 	end	
 
 	it 'タスク一覧' do
-		# 新規作成画面を表示
+		# 一覧画面を表示
 		visit tasks_path
 
 		# 検証
 		expect(page).to have_content 'Test task'
-		expect(page).to have_content '2019-10-30'
+		expect(page).to have_content 'Test task2'
+		expect(page).to have_content 'Test task3'
 	end	
 
 	it 'タスク一覧_終了期限の昇順' do
