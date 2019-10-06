@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 		end
 
 		# ページネーション
-    @tasks = @tasks.page(params[:page]).per(5)
+    @tasks = @tasks.page(params[:page]).per(10)
   end
 
   def show
@@ -32,37 +32,27 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    respond_to do |format|
-      if @task.save
-				flash_msg = t 'flash.create'
-        format.html { redirect_to @task, notice: flash_msg}
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      flash[:success] = t 'flash.create'
+      redirect_to @task
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-				flash_msg = t 'flash.update'
-        format.html { redirect_to @task, notice: flash_msg }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+      flash[:success] = t 'flash.update'
+      redirect_to @task
+    else
+      render :edit
     end
   end
 
 	def destroy
-    @task.destroy
-    respond_to do |format|
-			flash_msg = t 'flash.delete'
-      format.html { redirect_to tasks_path, notice: flash_msg }
-      format.json { head :no_content }
+    if @task.destroy
+      flash[:success] = t 'flash.delete'
+      redirect_to tasks_path
     end
   end
  

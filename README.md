@@ -9,73 +9,50 @@ https://github.com/mckyhrs/task_app/blob/master/docs/el-training.md
 - postgresql: 11.5
 
 ## テーブルスキーマ
-### User：ユーザー
+### user：ユーザー
 
 | カラム名 | 論理名 | データ型 |
 | - | - | - |
 | id | ID | integer |
-| user_name | ユーザー名 | character varying(30) |
-| login_id | ログインID | character varying(30) |
-| password | パスワード | character varying(30) |
-| delete_flg | 削除フラグ | boolean |
-| create_date | 作成日 | timestamp |
-| create_user_id | 作成者ID | integer |
-| update_date | 更新日 | timestamp |
-| update_user_id | 更新者ID | integer |
+| user_name | ユーザー名 | character varying |
+| login_id | ログインID | character varying |
+| password | パスワード | character varying |
+| role | ロール | integer |
+| created_at | 作成日時 | timestamp without time zone |
+| updated_at | 更新日時 | timestamp without time zone |
 
-### Task：タスク
+### task：タスク
 
 | カラム名 | 論理名 | データ型 |
 | - | - | - |
 | id | ID | integer |
-| task_name | タスク名 | character varying(200) |
+| task_name | タスク名 | character varying |
 | content | 説明文 | text |
-| user_id | 担当者ID | integer |
 | limit_date | 終了期限 | date |
-| priority_id | 優先順位ID | integer |
-| status_id | ステータスID | integer |
-| delete_flg | 削除フラグ | boolean |
-| create_date | 作成日 | timestamp |
-| create_user_id | 作成者ID | integer |
-| update_date | 更新日 | timestamp |
-| update_user_id | 更新者ID | integer |
-
-### Label：ラベル
-
-| カラム名 | 論理名 | データ型 |
-| - | - | - |
-| id | ID | integer |
-| label_name | ラベル名 | character varying(100) |
-| delete_flg | 削除フラグ | boolean |
-| create_date | 作成日 | timestamp |
-| create_user_id | 作成者ID | integer |
-| update_date | 更新日 | timestamp |
-| update_user_id | 更新者ID | integer |
-
-### priority：優先順位
-
-| カラム名 | 論理名 | データ型 |
-| - | - | - |
-| id | ID | integer |
-| priority_name | 優先順位名 | character varying(20) |
 | priority | 優先順位 | integer |
-| delete_flg | 削除フラグ | boolean |
-| create_date | 作成日 | timestamp |
-| create_user_id | 作成者ID | integer |
-| update_date | 更新日 | timestamp |
-| update_user_id | 更新者ID | integer |
+| status | ステータス | integer |
+| user_id | ユーザーID | integer |
+| created_at | 作成日時 | timestamp without time zone |
+| updated_at | 更新日時 | timestamp without time zone |
 
-### status：ステータス
+### label：ラベル
 
 | カラム名 | 論理名 | データ型 |
 | - | - | - |
 | id | ID | integer |
-| status_name | ステータス名 | character varying(50) |
-| delete_flg | 削除フラグ | boolean |
-| create_date | 作成日 | timestamp |
-| create_user_id | 作成者ID | integer |
-| update_date | 更新日 | timestamp |
-| update_user_id | 更新者ID | integer |
+| label_name | ラベル名 | character varying |
+| created_at | 作成日時 | timestamp without time zone |
+| updated_at | 更新日時 | timestamp without time zone |
+
+### task_label：タスクとラベルの関連
+
+| カラム名 | 論理名 | データ型 |
+| - | - | - |
+| id | ID | integer |
+| task_id | タスクID | integer |
+| label_id | ラベルID | integer |
+| created_at | 作成日時 | timestamp without time zone |
+| updated_at | 更新日時 | timestamp without time zone |
 
 ## Herokuへのデプロイ
 

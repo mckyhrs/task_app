@@ -1,26 +1,36 @@
-<h1><%= t('.title') %></h1>
-
-<%= form_with(model: @task, local: true) do |form| %>
-<%= render 'shared/error_messages', object: form.object %>
-<table>
-	<tr>
-		<th><%= form.label :task_name %></th>
-		<td><%= form.text_field :task_name %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :content %></th>
-		<td><%= form.text_area :content %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :limit_date %></th>
-		<td><%= form.date_select :limit_date %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :status %></th>
-		<td><%= form.select :status, Task.statuses.keys.map { |k| [I18n.t("enums.task.status.#{k}"), k] } %></td>
-	</tr>
-</table>
-<%= form.submit %>
-<% end %>
-<br/>
-<%= link_to t('.back'), tasks_path %>
+<div class="container">
+	<%= form_with(model: @task, local: true) do |form| %>
+		<%= render 'shared/error_messages', object: form.object %>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1><%= t('.title') %></h1>
+				<table class="table table-bordered table-sm">
+					<tr>
+						<th class="col-xs-2"><%= form.label :task_name %></th>
+						<td><%= form.text_field :task_name, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :content %></th>
+						<td><%= form.text_area :content, size: "80x5", class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :limit_date %></th>
+						<td><%= form.date_select :limit_date, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :status %></th>
+						<td><%= form.select :status, Task.statuses.keys.map { |k| [I18n.t("enums.task.status.#{k}"), k] }, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :priority %></th>
+						<td><%= form.select :priority, Task.priorities.keys.map { |k| [I18n.t("enums.task.priority.#{k}"), k] }, class: "form-control" %></td>
+					</tr>
+				</table>
+				<%= form.submit class: "btn btn-primary" %>
+				<br/>
+				<br/>
+				<%= link_to t('.back'), tasks_path %>
+			</div>
+		</div>
+	<% end %>
+</div>
