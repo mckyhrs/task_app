@@ -4,7 +4,9 @@
     <div class="col-md-3 col-md-offset-9 head-nav">
       <% if logged_in? %>
           <%= current_user.user_name %>&nbsp;&nbsp;
-          <%= link_to "Admin", admin_users_path %>&nbsp;&nbsp;
+          <% if current_user.admin? %>
+            <%= link_to "Admin", admin_users_path %>&nbsp;&nbsp;
+          <% end %>
           <%= link_to "Logout", logout_path, method: "delete" %>
       <% end %>
     </div>
