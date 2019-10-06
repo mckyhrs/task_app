@@ -1,0 +1,30 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+h1 {
+    text-align: center;
+} 
+
+#logo {
+    float: left; 
+    margin-right: 1000px;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #fff;
+}
+
+.head-nav {
+    font-size: 10pt;
+    color: #fff;
+    a {
+        color: #fff;
+    }
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
+input[type="textarea"] {
+    size: auto;
+}

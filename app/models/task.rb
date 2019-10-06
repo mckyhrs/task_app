@@ -2,7 +2,7 @@ class Task < ApplicationRecord
 	enum status: { waiting: 0, working: 1, completed: 2 }
 	enum priority: { low: 0, middle: 1, high: 2 }
 	validates :task_name, presence: true
-	belongs_to :user, optional: true
+	belongs_to :user
 
 	# 検索
 	def self.search(task_name, status, user_id)

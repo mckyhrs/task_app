@@ -17,34 +17,27 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to admin_users_path }
-        format.json { render :show, status: :created, location: admin_users_path }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:success] = t 'flash.create'
+      redirect_to admin_users_path
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to admin_users_path }
-        format.json { render :show, status: :ok, location: admin_users_path }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:success] = t 'flash.update'
+      redirect_to admin_users_path
+    else
+      render :edit
     end
   end
   
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_path }
-      format.json { head :no_content }
+    if @user.destroy
+      flash[:success] = t 'flash.delete'
+      redirect_to admin_users_path
     end
   end
 

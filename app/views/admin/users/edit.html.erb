@@ -1,25 +1,32 @@
-<h1><%= t('.title') %></h1>
-
-<%= form_with(model: [:admin, @user], local: true) do |form| %>
-<table>
-	<tr>
-		<th><%= form.label :user_name %></th>
-		<td><%= form.text_field :user_name %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :login_id %></th>
-		<td><%= form.text_field :login_id %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :password %></th>
-		<td><%= form.text_field :password %></td>
-	</tr>
-	<tr>
-		<th><%= form.label :role %></th>
-		<td><%= form.select :role, User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] } %></td>
-	</tr>
-</table>
-<%= form.submit %>
-<% end %>
+<div class="container">
+	<%= form_with(model: [:admin, @user], local: true) do |form| %>
+		<%= render 'shared/error_messages', object: form.object %>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1><%= t('.title') %></h1>
+				<table class="table table-bordered table-sm">
+					<tr>
+						<th class="col-xs-2"><%= form.label :user_name %></th>
+						<td><%= form.text_field :user_name, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :login_id %></th>
+						<td><%= form.text_field :login_id, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :password %></th>
+						<td><%= form.text_field :password, class: "form-control" %></td>
+					</tr>
+					<tr>
+						<th><%= form.label :role %></th>
+						<td><%= form.select :role, User.roles.keys.map { |k| [I18n.t("enums.user.role.#{k}"), k] }, class: "form-control" %></td>
+					</tr>
+				</table>
+				<%= form.submit class: "btn btn-primary" %>
+				<br/>
+				<br/>
+				<%= link_to t('.back'), admin_users_path %>
+			</div>
+		</div>
+	<% end %>
 <br/>
-<%= link_to t('.back'), admin_users_path %>
